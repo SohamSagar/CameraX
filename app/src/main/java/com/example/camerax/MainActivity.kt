@@ -106,7 +106,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.tabL.addOnTabSelectedListener(object :OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
-
                 startCamera(tab?.position?:0)
             }
 
@@ -302,14 +301,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun analyze(image: ImageProxy) {
-
             val buffer = image.planes[0].buffer
             val data = buffer.toByteArray()
             val pixels = data.map { it.toInt() and 0xFF }
             val luma = pixels.average()
 
             listener(luma)
-
             image.close()
         }
     }
